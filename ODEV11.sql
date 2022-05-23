@@ -17,6 +17,6 @@ UNION ALL
 (SELECT first_name FROM customer);
 
 --4.b
-(SELECT first_name FROM actor) 
+(SELECT first_name FROM actor)
 EXCEPT ALL
 (SELECT first_name FROM customer);
