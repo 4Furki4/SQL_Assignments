@@ -1,0 +1,17 @@
+--1
+SELECT count(*) from film
+where film.length>(SELECT AVG(length) FROM film);
+
+--2
+SELECT COUNT(*) FROM film
+WHERE rental_rate=(SELECT MAX(rental_rate) FROM film);
+
+--3
+select first_name, customer_id, counts.counter from customer
+join
+(
+    select count(customer_id)as counter,customer_id as id from payment
+    group by(customer_id) --burada aslında en çok tekrar eden customer idyi customer id ile eşleştirerek 2 kolon elde ettim 
+                          --ve bunu farklı tabloda bulunun isimle birleştirmek için join yapısıyla kullandım
+) as counts
+on customer.customer_id= counts.id order by(counts.counter) desc;
